@@ -1,66 +1,58 @@
 <%- content_for(:head_css) do -%>
-* {
-margin: 0px;
-padding: 0px;
+#games-roundabout {
+  position: relative;
 }
-body {
-  font-size: 62.5%;
-  font-family: 'Lucida Grande', Helvetica, sans-serif;
-  background-image: url('/assets/background.png');
-  background-size: 100% 100%;
-  width: 100%;
-  height: 100%;
-  color: #999;
-  padding: 20px;
+.roundabout-holder {
+  height: 300px;
 }
-tr.base-tr {
-  vertical-align: top;
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 42em;
+  height: 24em;
 }
-.game {
-  width: 400px;
-}
-p {
-  font-size: 1.2em;
-  margin: 0 0 15px 0;
-}
-h1#base-header {
-  position:fixed;
-  left:0px;
-  top:0px;
-  font-size:5em;
-  color:	#FFD700;
-  padding-bottom: 10%;
-}
-h2 {
-  font-family: Sans-serif;
-  font-size: 2.0em;
-  letter-spacing: -1px;
-  color: #ccc;
-}
-img {
+IMG {
   width: 300px;
   height: 300px;
 }
+body {
+  background-image: url('/assets/background.png');
+}
+h1#base-header {
+  font-family: 'Lucida Grande', Helvetica, sans-serif;
+  left: 0px;
+  top: 0px;
+  font-size: 2em;
+  color: gold;
+}
 <%- end -%>
+<script>
+  $(document).ready(function() {
+    $('ul').roundabout({
+      enableDrag: true,
+      minOpacity: 0.0,
+      shape: 'tearDrop',
+      tilt: -10
+    });
+  });
+</script>
 
-<div id="base-body">
-  <h1 id="base-header">GamesCrafters</h1>
-  <div id="base-page-wrap">
-    <table cellspacing='30'>
-      <tr id="base-tr">
-        <%- @games.each do |name, resource| -%>
-          <td>
-            <a class="nostyle" href="/game/<%= resource -%>/new">
-              <div class="game">
-                <h2><%= name -%></h2>
-                <p>
-                  <%= image_tag "#{resource}.png" %>
-                </p>
-              </div>
-            </a>
-          </td>
-        <%- end %>
-      </tr>
-    </table>
-  </div>
+<h1 id="base-header">
+GamesCrafters
+</h1>
+<div id="games-roundabout">
+  <ul>
+    <%- @games.each do |name, resource| -%>
+      <li>
+        <div>
+          <a class="nostyle" href="/game/<%= resource -%>/new">
+            <div class="game">
+              <%= image_tag "#{resource}.png" %>
+            </div>
+          </a>
+        </div>
+      </li>
+    <%- end %>
+  </ul>
 </div>
