@@ -1,25 +1,66 @@
-<%- content_for(:head_javascripts) do -%>
+<%- content_for(:head_css) do -%>
+* {
+margin: 0px;
+padding: 0px;
+}
+body {
+  font-size: 62.5%;
+  font-family: 'Lucida Grande', Helvetica, sans-serif;
+  background-image: url('/assets/background.png');
+  background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+  color: #999;
+  padding: 20px;
+}
+tr.base-tr {
+  vertical-align: top;
+}
+.game {
+  width: 400px;
+}
+p {
+  font-size: 1.2em;
+  margin: 0 0 15px 0;
+}
+h1#base-header {
+  position:fixed;
+  left:0px;
+  top:0px;
+  font-size:5em;
+  color:	#FFD700;
+  padding-bottom: 10%;
+}
+h2 {
+  font-family: Sans-serif;
+  font-size: 2.0em;
+  letter-spacing: -1px;
+  color: #ccc;
+}
+img {
+  width: 300px;
+  height: 300px;
+}
 <%- end -%>
 
-<h1>GamesCrafters</h1>
-<br />
-<br />
-<br />
-<div id="page-wrap">
-  <table cellspacing='30'>
-    <tr>
-      <%- @games.each do |name, resource| -%>
-        <td>
-          <a href="/games/<%= resource -%>/new">
-            <div class="game">
-              <h2><%= name -%></h2>
-              <p>
-                <%= image_tag "#{resource}.png" %>
-              </p>
-            </div>
-          </a>
-        </td>
-      <%- end %>
-    </tr>
-  </table>
+<div id="base-body">
+  <h1 id="base-header">GamesCrafters</h1>
+  <div id="base-page-wrap">
+    <table cellspacing='30'>
+      <tr id="base-tr">
+        <%- @games.each do |name, resource| -%>
+          <td>
+            <a class="nostyle" href="/game/<%= resource -%>/new">
+              <div class="game">
+                <h2><%= name -%></h2>
+                <p>
+                  <%= image_tag "#{resource}.png" %>
+                </p>
+              </div>
+            </a>
+          </td>
+        <%- end %>
+      </tr>
+    </table>
+  </div>
 </div>

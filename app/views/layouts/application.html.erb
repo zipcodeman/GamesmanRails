@@ -6,6 +6,9 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield :head_javascripts %>
+  <style type='text/css'>
+    <%= yield :head_css %>
+  </style>
 </head>
 <body>
 

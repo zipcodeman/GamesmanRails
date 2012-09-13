@@ -1,4 +1,6 @@
 GamesmanRails::Application.routes.draw do
+  match 'game/:name/:action' => 'game'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
