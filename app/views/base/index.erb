@@ -1,1 +1,25 @@
-Hi Molly
+<%- content_for(:head_javascripts) do -%>
+<%- end -%>
+
+<h1>GamesCrafters</h1>
+<br />
+<br />
+<br />
+<div id="page-wrap">
+  <table cellspacing='30'>
+    <tr>
+      <%- @games.each do |name, resource| -%>
+        <td>
+          <a href="/games/<%= resource -%>/new">
+            <div class="game">
+              <h2><%= name -%></h2>
+              <p>
+                <%= image_tag "#{resource}.png" %>
+              </p>
+            </div>
+          </a>
+        </td>
+      <%- end %>
+    </tr>
+  </table>
+</div>
