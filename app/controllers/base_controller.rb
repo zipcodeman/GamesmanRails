@@ -1,4 +1,5 @@
 class BaseController < ApplicationController
+  layout "base_layout"
   def index
     @games = {
       "Tic-Tac-Toe" => "ttt",
