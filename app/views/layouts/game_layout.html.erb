@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
-  <body>
-  <%= yield %>
-  </body>
+<head>
+  <title>GamesCrafters<%= (@page_title.nil? || @page_title.empty?) ? "" : " - #{@page_title}" %></title>
+  <%= stylesheet_link_tag    "game", :media => "all" %>
+  <%= javascript_include_tag "game" %>
+  <%= csrf_meta_tags %>
+  <%= yield :head_javascripts %>
+  <style type='text/css'>
+    <%= yield :head_css %>
+  </style>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
 </html>
