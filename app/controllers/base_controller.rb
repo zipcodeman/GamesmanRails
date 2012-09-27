@@ -11,16 +11,6 @@ class BaseController < ApplicationController
       @games[game_name] = asset_name
     end
 
-    return
-
-    @games = {
-      "Tic-Tac-Toe" => "ttt",
-      "Connect 4" => "c4",
-      "Bagh-Chal" => "baghchal",
-      "Othello" => "othello",
-      "Atari Go" => "atarigo",
-      "Connections" => "connections",
-    }
     render :index
   end
 end
