@@ -1,3 +1,26 @@
+# Coffee
+
+class Game
+  constructor: (name, parameters, notifierClass, board) ->
+    @gameName = name
+    @params = parameters
+    @notifier = notifierClass
+    @previousBoards = []
+    @nextBoards = []
+    @currentBoard = board
+    @baseUrl = "http://nyc.cs.berkeley.edu:8080/gcweb/service/gamesman/puzzles/"
+
+  setDrawProcedure: (draw) ->
+    @draw = draw
+
+  getUrlTail: (board) ->
+    retval = ""
+    for key in @params
+      retval += ";" + key + "=" + @params[key]
+    retval += ";board=" + escape(board)
+    return retval
+
+###
 function Game(name, parameters, notifierClass, board){
   this.gameName = name;
   this.params = parameters;
@@ -81,3 +104,4 @@ Game.prototype.updateBoard = function(){
   this.notifier.drawBoard(this.currentBoard);
   this.getPossibleMoves(this.currentBoard, this.notifier.drawMoves);
 }
+###
