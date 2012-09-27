@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>GamesCrafters<%= (@page_title.nil? || @page_title.empty?) ? "" : " - #{@page_title}" %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "base", :media => "all" %>
+  <%= javascript_include_tag "base" %>
   <%= csrf_meta_tags %>
   <%= yield :head_javascripts %>
   <style type='text/css'>
