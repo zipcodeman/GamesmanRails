@@ -1,5 +1,7 @@
 # Coffee
-window.Game = class Game
+window.GCAPI or= {}
+
+window.GCAPI.Game = class Game
   constructor: (name, parameters, notifierClass, board) ->
     @gameName = name
     @params = parameters
@@ -14,7 +16,7 @@ window.Game = class Game
 
   getUrlTail: (board) ->
     retval = ""
-    for k,v in @params
+    for own k,v of @params
       retval += ";" + k + "=" + v
     retval += ";board=" + escape(board)
     return retval
@@ -28,8 +30,7 @@ window.Game = class Game
               notifier(data)
 
   getPossibleMoves: (board, notifier) ->
-    requestUrl = @baseUrl + @gameName + "/getNextMoveValues" +
-                 @getUrlTail(board)
+    requestUrl = @baseUrl + @gameName + "/getNextMoveValues" + @getUrlTail(board)
 
     $.ajax requestUrl,
             dataType: "json"

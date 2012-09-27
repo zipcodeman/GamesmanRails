@@ -5,5 +5,6 @@ class GameController < ApplicationController
   end
 
   def play
+    headers['Access-Control-Allow-Origin'] = "*"
   end
 end

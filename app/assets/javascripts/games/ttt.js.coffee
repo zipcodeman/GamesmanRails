@@ -1,21 +1,28 @@
-window.game = "Tic Tac Toe"
-window.asset = "ttt"
-window.parameters = {
-  width: { type: "integer", values: "3-4" },
-  height: { type: "integer", values: "3-4" },
-  pieces: { type: "integer", values: "3-4" },
+window.game or= {}
+
+window.game.title = "Tic Tac Toe"
+window.game.asset = "ttt"
+window.game.parameters = {
+  width: { type: "integer", values: [3,4,5], desc: "Board Width" },
+  height: { type: "integer", values: [3,4,5], desc: "Board Height" },
+  pieces: { type: "integer", values: [3,4,5], desc: "Number in a row" },
 }
-window.getInitialBoard = (p) ->
+window.game.getInitialBoard = (p) ->
   retval = ""
   for a in [1..p.width]
     for b in [1..p.height]
       retval += " "
   return retval
 
-window.notifier = class
+window.game.notifier = class
   constructor: (@canvas) ->
   drawBoard: (board) ->
-    alert(board)
+    @canvas.drawArc
+      layer: true
+      fillStyle: "black"
+      x: 100, y: 100
+      radius: 50
+      click: (layer) ->
+        alert "orly?"
 
   drawMoves: (data) ->
-    alert(data)

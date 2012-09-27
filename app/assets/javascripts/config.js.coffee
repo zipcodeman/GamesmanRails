@@ -19,23 +19,30 @@ $.fn.extend
     log = (msg) ->
       console?.log msg if settings.debug
 
-    c = 
+    c = @first()
 
     contents = ""
-    makeRange = (v) ->
-      values = []
-      ranges = v.split ","
-      for range in ranges
-        if "-" in range
-          parts = range.split "-"
-          values.concat [parts[0]..parts[1]]
-        else
-          values.concat range
-      contents = values.join(",")
+    makeRange = (n,i) ->
+      v = i.values
+      description = i.desc
+      retval = description + ": "
+      retval += "<select name='" + n + "' >"
+      for value in i.values
+        retval += "<option value='" + value + "'>" + value + "</option>"
+      retval += "</select><br />"
+      return retval
+
+    makeInput = () ->
+      retval = ""
+      return retval
+
+    contents = "<form action='play'>"
     for own name,info of settings
       if typeof info is "object"
         switch info.type
-          when "integer" then makeRange info.values
+          when "integer" then contents += makeRange name,info
+    contents += "<input type='submit' />"
+    contents += "</form>"
 
-    $(c).innerHTML(contents)
+    c.html contents
     return @
