@@ -1,6 +1,5 @@
 # Coffee
-
-class Game
+window.Game = class Game
   constructor: (name, parameters, notifierClass, board) ->
     @gameName = name
     @params = parameters
@@ -15,93 +14,52 @@ class Game
 
   getUrlTail: (board) ->
     retval = ""
-    for key in @params
-      retval += ";" + key + "=" + @params[key]
+    for k,v in @params
+      retval += ";" + k + "=" + v
     retval += ";board=" + escape(board)
     return retval
 
-###
-function Game(name, parameters, notifierClass, board){
-  this.gameName = name;
-  this.params = parameters;
-  this.notifier = notifierClass;
-  this.previousBoards = Array();
-  this.nextBoards = Array();
-  this.currentBoard = board;
-  this.baseUrl = "http://nyc.cs.berkeley.edu:8080/gcweb/service/" + 
-                 "gamesman/puzzles/";
-}
+  getBoardValues: (board, notifier) ->
+    requestUrl = @baseUrl + @gameName + "/getMoveValue" + @getUrlTail(board)
 
-Game.prototype.setDrawProcedure = function(draw){
-  this.draw = draw;
-}
+    $.ajax requestUrl,
+            dataType: "json",
+            success: (data) ->
+              notifier(data)
 
-Game.prototype.getUrlTail = function(board){
-  retval = ""
-  for(key in this.params){
-    retval += ";" + key + "=" + this.params[key]
-  }
-  retval += ";board=" + escape(board);
-  return retval
-}
+  getPossibleMoves: (board, notifier) ->
+    requestUrl = @baseUrl + @gameName + "/getNextMoveValues" +
+                 @getUrlTail(board)
 
-Game.prototype.getBoardValues = function(board, notifier){
-  requestUrl = this.baseUrl + this.gameName + "/getMoveValue" +
-               this.getUrlTail(board)
-  $.ajax({
-    url: requestUrl,
-    dataType: "json",
-    success: function(data){
-      notifier(data)
-    },
-  });
-}
+    $.ajax requestUrl,
+            dataType: "json"
+            success: (data) ->
+              retval = []
+              if data.status == "ok"
+                notifier(data.response)
+              else
+                notifier(data)
+  
+  undo: () ->
+    if @previousBoards.length > 0
+      @nextBoards.push(@currentBoard)
+      @currentBoard = @previousBoards.pop()
+      @updateBoard()
 
-Game.prototype.getPossibleMoves = function(board, notifier){
-  requestUrl = this.baseUrl + this.gameName + "/getNextMoveValues" +
-               this.getUrlTail(board)
-  $.ajax({
-    url: requestUrl,
-    dataType: "json",
-    success: function(data){
-      retval = Array()
-      if(data.status == "ok"){
-        notifier(data.response)
-      }else{
-        notifier(data)
-      }
-    }
-  });
-}
+  redo: () ->
+    if @nextBoards.length > 0
+      @previousBoards.push(@currentBoard)
+      @currentBoard = @nextBoards.pop()
+      @updateBoard()
 
-Game.prototype.undo = function(){
-  if(this.previousBoards.length > 0){
-    this.nextBoards.push(this.currentBoard);
-    this.currentBoard = this.previousBoards.pop();
-    this.updateBoard();
-  }
-}
+  startGame: () ->
+    @updateBoard()
 
-Game.prototype.redo = function(){
-  if(this.nextBoards.length > 0){
-    this.previousBoards.push(this.currentBoard);
-    this.currentBoard = this.nextBoards.pop();
-    this.updateBoard();
-  }
-}
+  makeMove: (move) ->
+    @previousBoards.push(@currentBoard)
+    @currentBoard = move.currentBoard
+    @updateBoard()
 
-Game.prototype.startGame = function(){
-  this.updateBoard();
-}
-
-Game.prototype.makeMove = function(move){
-  this.previousBoards.push(this.currentBoard);
-  this.currentBoard = move.board;
-  this.updateBoard();
-}
-
-Game.prototype.updateBoard = function(){
-  this.notifier.drawBoard(this.currentBoard);
-  this.getPossibleMoves(this.currentBoard, this.notifier.drawMoves);
-}
-###
+  updateBoard: () ->
+    @notifier.drawBoard(@currentBoard)
+    @getPossibleMoves(@currentBoard, @notifier.drawMoves)
