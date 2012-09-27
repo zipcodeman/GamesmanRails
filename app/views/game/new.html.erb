@@ -1,2 +1,9 @@
-<h1>Game#new</h1>
-<p>Find me in app/views/game/new.html.erb</p>
+<%- content_for :head_javascripts do -%>
+<%= javascript_include_tag "games/#{params[:name]}" -%>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#game-title').text(game);
+  });
+</script>
+<%- end -%>
+<h1 id="game-title"></h1>
