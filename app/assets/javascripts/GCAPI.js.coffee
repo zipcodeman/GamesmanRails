@@ -1,6 +1,15 @@
 # Coffee
 window.GCAPI or= {}
 
+window.GCAPI.GameNotifier = class
+  constructor: (@canvas, @conf) ->
+    @showMoveValues = false
+  drawBoard: (board, game) ->
+    alert("GameNotifier must implement drawBoard")
+  drawMoves: (data, game) ->
+    alert("GameNotifier must implement drawMoves")
+  setShowMoveValues: (@showMoveValues) ->
+
 window.GCAPI.Game = class Game
   constructor: (name, parameters, notifierClass, board) ->
     @gameName = name
@@ -27,7 +36,7 @@ window.GCAPI.Game = class Game
     $.ajax requestUrl,
             dataType: "json",
             success: (data) ->
-              notifier(data)
+              notifier(data, @)
 
   getPossibleMoves: (board, notifier) ->
     requestUrl = @baseUrl + @gameName + "/getNextMoveValues" + @getUrlTail(board)
@@ -37,9 +46,9 @@ window.GCAPI.Game = class Game
             success: (data) ->
               retval = []
               if data.status == "ok"
-                notifier(data.response)
+                notifier(data.response, @)
               else
-                notifier(data)
+                notifier(data, @)
   
   undo: () ->
     if @previousBoards.length > 0
@@ -58,9 +67,12 @@ window.GCAPI.Game = class Game
 
   makeMove: (move) ->
     @previousBoards.push(@currentBoard)
-    @currentBoard = move.currentBoard
+    @currentBoard = move.board
     @updateBoard()
 
   updateBoard: () ->
-    @notifier.drawBoard(@currentBoard)
+    @notifier.drawBoard(@currentBoard, @)
     @getPossibleMoves(@currentBoard, @notifier.drawMoves)
+
+  getNotifier: () ->
+    @notifier
