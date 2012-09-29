@@ -1,7 +1,12 @@
+# title: Tic Tac Toe
+# asset: ttt
+# Tic Tac Toe is a basic game involving some things.these things are important
+# and will play an important role in things.
 window.game or= {}
 
 window.game.title = "Tic Tac Toe"
 window.game.asset = "ttt"
+window.game.description = "This is Tic Tac Toe"
 window.game.parameters = {
   width: { type: "integer", values: [3,4,5], desc: "Board Width" },
   height: { type: "integer", values: [3,4,5], desc: "Board Height" },

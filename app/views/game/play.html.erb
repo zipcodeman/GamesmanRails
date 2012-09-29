@@ -2,7 +2,9 @@
 <%= javascript_include_tag "games/#{params[:name]}" -%>
 <script type="text/javascript">
   $(document).ready(function() {
-    $('#game-canvas').startGame(<%= raw params.to_json -%>);
+    if (ensureGameFunctions()) {
+      $('#game-canvas').startGame(<%= raw params.to_json -%>);
+    }
   });
 </script>
 <%- end -%>

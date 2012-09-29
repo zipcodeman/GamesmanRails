@@ -46,3 +46,20 @@ $.fn.extend
 
     c.html contents
     return @
+
+
+window.ensureConfigParameters = () ->
+  problems = []
+  if ! window.game?
+    problems.push "You Must Create a window.game object in your game file"
+  else
+    if !window.game.title?
+      problems.push "You must define a window.game.title string with the title of the game"
+    if !window.game.asset?
+      problems.push "You must define a window.game.asset string with the asset name. This should be the same as the name of the js file, and any image assets"
+    if !window.game.parameters?
+      problems.push "You must define a parameters object. Please refer to ttt.js.coffee for an example of this"
+  if problems.length > 0
+    alert problems.join("\n\n")
+    return false
+  return true
