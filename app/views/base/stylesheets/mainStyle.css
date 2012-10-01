@@ -1,0 +1,55 @@
+/* CSS Document */
+body{
+	background-image: url(../images/back_pattern.png);	
+}
+
+p {
+	text-indent: .5in;
+}
+
+.row{
+	background-color: #FFF;	
+}
+/* Header */
+
+/* Main Content */
+
+/* Right Side Content */
+#rightSide_pics{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+#rightSide_pics li{
+	height: 121px;
+	width: 98%;
+	background-color: #FFD700;
+	margin-bottom: 5px;
+	-moz-box-shadow: inset 0 0 30px 1px rgba(51, 51, 51, .4);
+	-webkit-box-shadow: inset 0 0 30px 1px rgba(51, 51, 51, .4);
+	box-shadow: inset 0 0 30px 1px rgba(51, 51, 51, .4);
+	padding: 2%;
+}
+
+#rightSide_pics li:hover{
+	background-color: #0F4D92;
+	cursor: pointer;
+}
+
+#rightSide_pics li:last-child{
+	margin-bottom: 0px;
+}
+
+.gameSection{
+	padding-bottom: 25px;
+	padding-top: 25px;
+	box-shadow:5px 5px 10px #CFCFCF, 2px 2px 2px rgba(51, 51, 51, .75);
+	margin-top: 25px;
+}
+
+.gameImage img{
+	border: thin solid #FFD700;
+}
+
+/* Footer */
