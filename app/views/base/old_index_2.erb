@@ -1,0 +1,59 @@
+<%- content_for(:head_css) do -%>
+#games-roundabout {
+  position: relative;
+}
+.roundabout-holder {
+  height: 300px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 42em;
+  height: 24em;
+}
+IMG {
+  width: 300px;
+  height: 300px;
+}
+body {
+  background-image: url('/assets/background.png');
+}
+h1#base-header {
+  font-family: 'Lucida Grande', Helvetica, sans-serif;
+  left: 0px;
+  top: 0px;
+  font-size: 2em;
+  color: gold;
+}
+<%- end -%>
+<%- @page_title = 'Select Game' -%>
+<script>
+  $(document).ready(function() {
+    $('ul').roundabout({
+      enableDrag: true,
+      minOpacity: 0.0,
+      shape: 'tearDrop',
+      tilt: -10
+    });
+  });
+</script>
+
+<h1 id="base-header">
+GamesCrafters!!!!!
+</h1>
+<div id="games-roundabout">
+  <ul>
+    <%- @games.each do |name, resource| -%>
+      <li>
+        <div>
+          <a class="nostyle" href="/game/<%= resource -%>/new">
+            <div class="game">
+              <%= image_tag "#{resource}.png" %>
+            </div>
+          </a>
+        </div>
+      </li>
+    <%- end %>
+  </ul>
+</div>

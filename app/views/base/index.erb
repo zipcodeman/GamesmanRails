@@ -1,59 +1,113 @@
-<%- content_for(:head_css) do -%>
-#games-roundabout {
-  position: relative;
-}
-.roundabout-holder {
-  height: 300px;
-}
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  width: 42em;
-  height: 24em;
-}
-IMG {
-  width: 300px;
-  height: 300px;
-}
-body {
-  background-image: url('/assets/background.png');
-}
-h1#base-header {
-  font-family: 'Lucida Grande', Helvetica, sans-serif;
-  left: 0px;
-  top: 0px;
-  font-size: 2em;
-  color: gold;
-}
-<%- end -%>
-<%- @page_title = 'Select Game' -%>
-<script>
-  $(document).ready(function() {
-    $('ul').roundabout({
-      enableDrag: true,
-      minOpacity: 0.0,
-      shape: 'tearDrop',
-      tilt: -10
-    });
-  });
-</script>
+<!DOCTYPE html>
 
-<h1 id="base-header">
-GamesCrafters!!!!!
-</h1>
-<div id="games-roundabout">
-  <ul>
-    <%- @games.each do |name, resource| -%>
-      <li>
-        <div>
-          <a class="nostyle" href="/game/<%= resource -%>/new">
-            <div class="game">
-              <%= image_tag "#{resource}.png" %>
-            </div>
-          </a>
-        </div>
-      </li>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>GamesCrafters - Games</title>
+
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  <link rel="stylesheet" href="stylesheets/app.css">
+  <link href="stylesheets/mainStyle.css" rel="stylesheet" type="text/css">
+  <script src="javascripts/modernizr.foundation.js"></script>
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+	 <!-- Navigation Top Bar -->
+     <div class="contain-to-grid">
+        <nav class="top-bar">
+            <ul>
+                <li class="name"><h1><a href="#">Gamesman Menu</a></h1></li>
+                <li class="toggle-topbar"><a href="#"></a></li>
+            </ul>
+            <!-- Actual Links -->
+            <section>
+                <ul class="left">
+                    <li class="has-dropdown active">
+                    	<a href="#">Games</a>
+                           <ul class="dropdown">
+                             <li><h5><a href="#">Some Games Here</a></h5></li>
+                             <li><a href="#">Sub Nav 2</a></li>
+                             <li><a href="#">Sub Nav 3</a></li>
+                          </ul>
+                    </li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+	<!-- Header -->
+    <div class="row">
+    	<div class="twelve columns">
+    		<h1>Games</h1>
+    	</div>
+    </div>
+    <!-- Main Content -->
+	<%- @games.each do |name, resource| -%>
+		<div class="gameSection row">
+			<div class="eight columns">
+				<h3><a class="nostyle" href="/game/<%= resource -%>/new"></h3>
+				<p>Donec dictum adipiscing velit ac molestie. Sed eu nisi libero, vel placerat risus. Vivamus vulputate malesuada augue quis tincidunt. Ut aliquam metus ac augue lacinia mollis. Integer lacinia dolor vel risus tincidunt suscipit. Aliquam erat quam, porta eu posuere non, suscipit sed magna. Maecenas vulputate vehicula nisi, id pretium arcu viverra et. Curabitur purus quam, tincidunt sit amet ultrices nec, malesuada sit amet ligula. Praesent sodales tincidunt ipsum ut interdum. Fusce suscipit felis in felis volutpat tristique.</p>
+			</div>
+			<div class="gameImage four columns">
+				<%= image_tag "#{resource}.png" %>
+			</div>
+		</div>
     <%- end %>
-  </ul>
-</div>
+	
+    <!-- Footer -->
+  	<div class="row">
+    
+    </div>
+    
+  <!-- Included JS Files (Uncompressed) -->
+  <!--
+  
+  <script src="javascripts/jquery.js"></script>
+  
+  <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
+  
+  <script src="javascripts/jquery.foundation.forms.js"></script>
+  
+  <script src="javascripts/jquery.foundation.reveal.js"></script>
+  
+  <script src="javascripts/jquery.foundation.orbit.js"></script>
+  
+  <script src="javascripts/jquery.foundation.navigation.js"></script>
+  
+  <script src="javascripts/jquery.foundation.buttons.js"></script>
+  
+  <script src="javascripts/jquery.foundation.tabs.js"></script>
+  
+  <script src="javascripts/jquery.foundation.tooltips.js"></script>
+  
+  <script src="javascripts/jquery.foundation.accordion.js"></script>
+  
+  <script src="javascripts/jquery.placeholder.js"></script>
+  
+  <script src="javascripts/jquery.foundation.alerts.js"></script>
+  
+  <script src="javascripts/jquery.foundation.topbar.js"></script>
+  
+  -->
+  
+  <!-- Included JS Files (Compressed) -->
+  <script src="javascripts/jquery.js"></script>
+  <script src="javascripts/foundation.min.js"></script>
+  <!-- Human Scripts -->
+  <script src="javascripts/mainScript.js"></script>
+  <!-- Initialize JS Plugins -->
+  <script src="javascripts/app.js"></script>
+</body>
+</html>
