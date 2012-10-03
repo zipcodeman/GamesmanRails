@@ -8,11 +8,6 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
-  <%= stylesheet_link_tag 'foundation' %>
-  <%= stylesheet_link_tag 'app' %>
-  <%= stylesheet_link_tag 'index' %>
-  <script src="javascripts/modernizr.foundation.js"></script>
-
   <!-- IE Fix for HTML5 Tags -->
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -49,11 +44,15 @@
     	</div>
     </div>
     <!-- Main Content -->
-	<%- @games.each do |name, resource| -%>
+	<%- @games.each do |resource, parts| -%>
+    <%-
+    game_name = parts[0]
+    description = parts[1]
+    -%>
 		<div class="gameSection row">
 			<div class="eight columns">
-			    <h1><a class="nostyle" href="/game/<%= resource -%>/new"><%= resource %></a></h1>
-				<p>Donec dictum adipiscing velit ac molestie. Sed eu nisi libero, vel placerat risus. Vivamus vulputate malesuada augue quis tincidunt. Ut aliquam metus ac augue lacinia mollis. Integer lacinia dolor vel risus tincidunt suscipit. Aliquam erat quam, porta eu posuere non, suscipit sed magna. Maecenas vulputate vehicula nisi, id pretium arcu viverra et. Curabitur purus quam, tincidunt sit amet ultrices nec, malesuada sit amet ligula. Praesent sodales tincidunt ipsum ut interdum. Fusce suscipit felis in felis volutpat tristique.</p>
+			    <h1><a class="nostyle" href="/game/<%= resource -%>/new"><%= game_name %></a></h1>
+          <p><%= description %></p>
 			</div>
 			<div class="gameImage four columns">
 				<%= image_tag "#{resource}.png" %>
@@ -65,44 +64,5 @@
   	<div class="row">
     
     </div>
-    
-  <!-- Included JS Files (Uncompressed) -->
-  <!--
-  
-  <script src="javascripts/jquery.js"></script>
-  
-  <script src="javascripts/jquery.foundation.mediaQueryToggle.js"></script>
-  
-  <script src="javascripts/jquery.foundation.forms.js"></script>
-  
-  <script src="javascripts/jquery.foundation.reveal.js"></script>
-  
-  <script src="javascripts/jquery.foundation.orbit.js"></script>
-  
-  <script src="javascripts/jquery.foundation.navigation.js"></script>
-  
-  <script src="javascripts/jquery.foundation.buttons.js"></script>
-  
-  <script src="javascripts/jquery.foundation.tabs.js"></script>
-  
-  <script src="javascripts/jquery.foundation.tooltips.js"></script>
-  
-  <script src="javascripts/jquery.foundation.accordion.js"></script>
-  
-  <script src="javascripts/jquery.placeholder.js"></script>
-  
-  <script src="javascripts/jquery.foundation.alerts.js"></script>
-  
-  <script src="javascripts/jquery.foundation.topbar.js"></script>
-  
-  -->
-  
-  <!-- Included JS Files (Compressed) -->
-  <script src="javascripts/jquery.js"></script>
-  <script src="javascripts/foundation.min.js"></script>
-  <!-- Human Scripts -->
-  <script src="javascripts/mainScript.js"></script>
-  <!-- Initialize JS Plugins -->
-  <script src="javascripts/app.js"></script>
 </body>
 </html>
