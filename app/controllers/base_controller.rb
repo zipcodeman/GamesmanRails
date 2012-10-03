@@ -1,34 +1,28 @@
+require 'xml'
+
 class BaseController < ApplicationController
   layout "base_layout"
   def index
     @games = {}
-    Dir.glob("app/assets/javascripts/games/*") do |file|
+    Dir.glob("app/assets/xml/games/*.xml") do |file|
       parts = file.split('/')
-      filename = parts[-1].split('.')
-      
-      game_name = ""
-      description = ""
       asset_name = parts[-1].split('.')[0]
-      File.open(file).each_line do |line|
-        if line.start_with? "# "
-          l = line.tr("#", '')
-          if l.include? ':'
-            parts = l.split(":")
-            if parts[0].strip == "asset"
-              asset_name = parts[1].strip
-            elsif parts[0].strip == "title"
-              game_name = parts[1].strip
-            end
-          else
-            description += l.strip + " "
-          end
-        else
-          break
+
+      parser = XML::Parser.file(file)
+
+      game = parser.parse
+
+      title = game.find_first('//game/title').content
+      description = game.find_first('//game/description').content
+      tags = []
+      tags = game.find_first('//game/tags').children.each do |child|
+        if child.name != 'text'
+          tags << child.name
         end
       end
-      @games[asset_name] = [game_name, description]
-    end
 
+      @games[asset_name] = [title, description, tags]
+    end
     render :index
   end
 end

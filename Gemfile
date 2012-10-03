@@ -40,3 +40,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+gem 'libxml-ruby', '>= 0.8.3'
