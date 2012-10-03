@@ -1,6 +1,6 @@
 # title: Tic Tac Toe
 # asset: ttt
-# Tic Tac Toe is a basic game involving some things.these things are important
+# Tic Tac Toe is a basic game involving some things. these things are important
 # and will play an important role in things.
 window.game or= {}
 

@@ -7,9 +7,9 @@ class BaseController < ApplicationController
       filename = parts[-1].split('.')
       
       game_name = ""
+      description = ""
       asset_name = parts[-1].split('.')[0]
       File.open(file).each_line do |line|
-        description = ""
         if line.start_with? "# "
           l = line.tr("#", '')
           if l.include? ':'
