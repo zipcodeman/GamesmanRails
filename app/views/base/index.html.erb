@@ -52,7 +52,7 @@
 	<%- @games.each do |name, resource| -%>
 		<div class="gameSection row">
 			<div class="eight columns">
-			    <h1><%= resource %></h1>
+			    <h1><a class="nostyle" href="/game/<%= resource -%>/new"><%= resource %></a></h1>
 				<p>Donec dictum adipiscing velit ac molestie. Sed eu nisi libero, vel placerat risus. Vivamus vulputate malesuada augue quis tincidunt. Ut aliquam metus ac augue lacinia mollis. Integer lacinia dolor vel risus tincidunt suscipit. Aliquam erat quam, porta eu posuere non, suscipit sed magna. Maecenas vulputate vehicula nisi, id pretium arcu viverra et. Curabitur purus quam, tincidunt sit amet ultrices nec, malesuada sit amet ligula. Praesent sodales tincidunt ipsum ut interdum. Fusce suscipit felis in felis volutpat tristique.</p>
 			</div>
 			<div class="gameImage four columns">
