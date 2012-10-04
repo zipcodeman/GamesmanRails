@@ -12,6 +12,10 @@ class BaseController < ApplicationController
 
       game = parser.parse
 
+      if !game.find_first('//game/hidden').nil? && params[:admin] != "true"
+        next
+      end
+
       title = game.find_first('//game/title').content
       description = game.find_first('//game/description').content
       tags = []

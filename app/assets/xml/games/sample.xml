@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <game>
+  <!-- Use this when working on a new game. Use ?admin=true to show the game -->
   <hidden /> <!-- Remove this line to show game -->
   <title>Title of the Game</title>
   <description>
@@ -16,4 +17,4 @@
     <!-- <capture /> -->
     <!-- <solved /> -->
   </tags>
-</games>
+</game>
