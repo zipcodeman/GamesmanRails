@@ -1,6 +1,6 @@
 /* CSS Document */
 body{
-	background-image: url('../back_pattern.png');	
+	background-image: url(../images/background.png);	
 }
 
 p {
@@ -9,6 +9,10 @@ p {
 
 .row{
 	background-color: #FFF;	
+}
+
+.float-left{
+	float: left;	
 }
 /* Header */
 
@@ -41,6 +45,7 @@ p {
 	margin-bottom: 0px;
 }
 
+/* Game Description Sections */
 .gameSection{
 	padding-bottom: 25px;
 	padding-top: 25px;
@@ -51,5 +56,24 @@ p {
 .gameImage img{
 	border: thin solid #FFD700;
 }
+
+.gameDescriptorImages{
+	list-style-type: none;	
+	margin: 0px;
+	padding: 0px
+}
+
+.gameDescriptorImages li{
+	float: left;
+	height: 50px;
+	width: 50px;
+	background-color: rgba(0,102,102,1);
+	margin-left: 10px;
+}
+
+.gameDescriptorImages li:first-child{
+	margin-left: 0px;
+}
+
 
 /* Footer */
