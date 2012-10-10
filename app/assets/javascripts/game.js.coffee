@@ -4,3 +4,4 @@
 #= require config
 #= require play
 #= require jcanvas.min
+#= require ui

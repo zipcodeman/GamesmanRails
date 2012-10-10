@@ -44,7 +44,11 @@ GamesCrafters!!!!!
 </h1>
 <div id="games-roundabout">
   <ul>
-    <%- @games.each do |name, resource| -%>
+    <%- @games.each do |resource, parts| -%>
+      <%- 
+      name = parts[0] 
+      description = parts[1]
+      -%>
       <li>
         <div>
           <a class="nostyle" href="/game/<%= resource -%>/new">
