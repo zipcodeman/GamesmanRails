@@ -9,5 +9,6 @@
     <game />
     <two-player />
     <dartboard />
+    <solved />
   </tags>
 </game>
