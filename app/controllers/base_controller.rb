@@ -19,8 +19,10 @@ class BaseController < ApplicationController
       title = game.find_first('//game/title').content
       description = game.find_first('//game/description').content
       tags = []
-      tags = game.find_first('//game/tags').children.each do |child|
-        if child.name != 'text'
+      game.find_first('//game/tags').children.each do |child|
+        if child.name != 'text' and !child.name.blank?
+          puts child
+          puts child.name
           tags << child.name
         end
       end

@@ -28,6 +28,7 @@ end
 		<%-
 		game_name = parts[0]
 		description = parts[1]
+    tags = parts[2]
 		-%>
 		<div class="row">
 			<div class="three columns mobile-two"><%= image_tag "#{resource}.png" %></div>
@@ -36,10 +37,9 @@ end
 			</div>
 			<div class="seven columns mobile-four">
 				<ul class="link-list">
-				<li><a href=""><%= image_tag "1player.png" %></a></li>
-				<li><a href=""><%= image_tag "2player.png" %></a></li>
-				<li><a href=""><%= image_tag "play_solved.png" %></a></li>
-				<li><a href=""><%= image_tag "solved.png" %></a></li>
+        <%- tags.each do |name| -%>
+          <li><a href=""><%= image_tag "#{name}.png" %></a></li>
+        <%- end -%>
 				</ul>	
 			</div>
 		</div>
