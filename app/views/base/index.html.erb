@@ -5,62 +5,94 @@ content_for :head_javascripts do
   stylesheet_link_tag "foundation"
 end
 %>
-
-<!-- Navigation Top Bar -->
- <div class="contain-to-grid">
-    <nav class="top-bar">
-        <ul>
-            <li class="name"><h1><a href="#">Gamesman Menu</a></h1></li>
-            <li class="toggle-topbar"><a href="#"></a></li>
-        </ul>
-        <!-- Actual Links -->
-        <section>
-            <ul class="left">
-                <li class="has-dropdown active">
-                  <a href="#">Games</a>
-                    <ul class="dropdown">
-                      <%- @games.each do |resource, parts| -%>
-                        <%-
-                        game_name = parts[0]
-                        description = parts[1]
-                        -%>
-                        <ul>
-                          <a href="#<%= resource -%>"><%= game_name -%></a>
-                        </ul>
-                      <%- end %>
-                    </ul>
-                </li>
-            </ul>
-        </section>
-    </nav>
-</div>
-<!-- Header -->
-<div class="row">
-  <div class="twelve columns">
-    <h1>Games</h1>
+	 <!-- Header and Nav -->
+  
+  <div class="row">
+	<div class="twelve columns">
+	  <div class="panel">
+		<h1>Games</h1>
+	  </div>
+	</div>
   </div>
-</div>
-<!-- Main Content -->
-<%- @games.each do |resource, parts| -%>
-  <%-
-  game_name = parts[0]
-  description = parts[1]
-  -%>
-  <a class="nostyle" name="<%= resource -%>" href="/game/<%= resource -%>/new">
-    <div class="gameSection row">
-        <div class="eight columns">
-            <h1>
-                <%= game_name %>
-            </h1>
-            <p><%= description %></p>
-        </div>
-      <div class="gameImage four columns">
-        <%= image_tag "#{resource}.png" %>
-      </div>
-    </div>
-  </a>
-<%- end %>
+  
+  <!-- End Header and Nav -->
+  
+   <div class="row">    
+	
+	<!-- Main Feed -->
+	<!-- This has been source ordered to come first in the markup (and on small devices) but to be to the right of the nav on larger screens -->
+	<div class="nine columns push-three">
+	
+	<!-- Feed Entry -->
+	<%- @games.each do |resource, parts| -%>
+		<%-
+		game_name = parts[0]
+		description = parts[1]
+		-%>
+		<div class="row">
+			<div class="three columns mobile-two"><%= image_tag "#{resource}.png" %></div>
+			<div class="nine columns mobile-two">
+			<p><h5><a class="nostyle" href="/game/<%= resource -%>/new"><%= game_name %></a></h5><%= description %></p>
+			</div>
+			<div class="seven columns mobile-four">
+				<ul class="link-list">
+				<li><a href=""><%= image_tag "1player.png" %></a></li>
+				<li><a href=""><%= image_tag "2player.png" %></a></li>
+				<li><a href=""><%= image_tag "play_solved.png" %></a></li>
+				<li><a href=""><%= image_tag "solved.png" %></a></li>
+				</ul>	
+			</div>
+		</div>
+		<hr />
+	<%- end %>
+	  
+	</div>
+	
+	
+	<!-- Nav Sidebar -->
+	<!-- This is source ordered to be pulled to the left on larger screens -->
+	<div class="three columns pull-nine">
+	  <div class="panel">
+		<a href="#"><img src="http://placehold.it/300x240&text=[Dan Garcia]" /></a>
+		<h5><a href="#">Your Name</a></h5>
+		
+		<dl class="vertical tabs">
+		  <dd class="active"><a href="#">Games</a></dd>
+		  <dd><a href="#">Puzzles</a></dd>
+		  <dd><a href="#">Section 3</a></dd>
+		  <dd><a href="#">Section 4</a></dd>
+		  <dd><a href="#">Section 5</a></dd>
+		  <dd><a href="#">Section 6</a></dd>
+		</dl>
+		
+	  </div>
+	</div>
+	
+	
+	<!-- Right Sidebar -->
+	<!-- On small devices this column is hidden -->
 
-<!-- Footer -->
-<div class="row">
-</div>
+
+	
+  </div>
+	
+  
+  <!-- Footer -->
+  
+  <footer class="row">
+	<div class="twelve columns">
+	  <hr />
+	  <div class="row">
+		<div class="twelve columns">
+		  <ul class="link-list right">
+			<li><a href="#">Games</a></li>
+			<li><a href="#">Puzzles</a></li>
+			<li><a href="#">Category 3</a></li>
+			<li><a href="#">Category 4</a></li>
+			<li><a href="#">Category 5</a></li>
+			<li><a href="#">Category 6</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div> 
+  </footer>

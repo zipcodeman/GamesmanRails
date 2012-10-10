@@ -1,6 +1,6 @@
 /* CSS Document */
 body{
-	background-image: url(../images/background.png);	
+	background-image: url('images/background.png');	
 }
 
 p {
